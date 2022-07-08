@@ -20,15 +20,5 @@
 ]]></content>
         </item>
         
-        <item>
-            <title>Examplepost</title>
-            <link>https://magsther.github.io/posts/examplepost/</link>
-            <pubDate>Mon, 04 Jul 2022 20:40:28 +0200</pubDate>
-            
-            <guid>https://magsther.github.io/posts/examplepost/</guid>
-            <description></description>
-            <content type="html"><![CDATA[]]></content>
-        </item>
-        
     </channel>
 </rss>
