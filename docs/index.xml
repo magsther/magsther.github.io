@@ -7,14 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 08 Jul 2022 20:16:37 +0200</lastBuildDate><atom:link href="https://magsther.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Jul 2022 19:50:17 +0200</lastBuildDate><atom:link href="https://magsther.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kind &amp; Terraform</title>
+      <link>https://magsther.github.io/posts/kind/</link>
+      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/posts/kind/</guid>
+      <description>Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+We still start a series of articles of how to manage Kubernetes resources via Terraform.
+First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , and the tool we will use is Kind.</description>
+    </item>
+    
     <item>
       <title>Hugo</title>
       <link>https://magsther.github.io/posts/hugo/</link>
       <pubDate>Fri, 08 Jul 2022 20:16:37 +0200</pubDate>
       
       <guid>https://magsther.github.io/posts/hugo/</guid>
-      <description>Hugo in 5 steps </description>
+      <description>Hugo in 9 steps Get a GitHub Account Create a GitHub repository and name it &amp;lt;username&amp;gt;.github.io. Create a Hugo project hugo new site . --force Pick a (Hugo) theme from here Add content to your new blog. hugo new posts/hugo.md Generate the blog by running hugo Push to GitHub Enable GitHub Pages Visit your published blog at https://.github.io </description>
     </item>
     
   </channel>
