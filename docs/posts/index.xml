@@ -34,8 +34,17 @@ kind was primarily designed for testing Kubernetes itself, but may be used for l
             <pubDate>Fri, 08 Jul 2022 20:16:37 +0200</pubDate>
             
             <guid>https://magsther.github.io/posts/hugo/</guid>
-            <description>Hugo in 5 minutes Get a GitHub Account Create a GitHub repository and name it &amp;lt;username&amp;gt;.github.io. Create a Hugo project hugo new site . --force Pick a (Hugo) theme from here Add content to your new blog. hugo new posts/hugo.md Generate the blog by running hugo Push to GitHub Enable GitHub Pages Visit your published blog at https://.github.io </description>
+            <description>Hugo in 5 minutes [Hugo](https://gohugo.io/) is a static site generator written in Go.
+What about Wordpress? Done that.. What about building a blog using Django? Done that..
+I picked Hugo because I don&amp;rsquo;t want to mess around with hosting and just focus on writing content. For me static site generators (like Hugo) works out of the box, but still gives me the possibility to modify things if needed.
+GitHub provides free and fast static hosting over SSL and at the same time automates the whole process.</description>
             <content type="html"><![CDATA[<h2 id="hugo-in-5-minutes">Hugo in 5 minutes</h2>
+<p><strong>[Hugo]</strong>(<a href="https://gohugo.io/">https://gohugo.io/</a>) is a static site generator written in Go.</p>
+<p>What about <strong>Wordpress</strong>? Done that.. What about building a blog using <strong>Django</strong>? Done that..</p>
+<p>I picked <strong>Hugo</strong> because I don&rsquo;t want to mess around with hosting and just focus on writing content.
+For me static site generators (like <strong>Hugo</strong>) works out of the box, but still gives me the possibility to modify things if needed.</p>
+<p>GitHub provides free and fast static hosting over SSL and at the same time automates the whole process. Yeeah ! :)</p>
+<h2 id="deploy-a-hugo-blog-in-less-than-10-steps">Deploy a Hugo blog in less than 10 steps</h2>
 <ol>
 <li>Get a <a href="%22https://www.github.com%22">GitHub</a> Account</li>
 <li>Create a GitHub repository and name it <code>&lt;username&gt;.github.io.</code></li>
