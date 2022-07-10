@@ -25,7 +25,7 @@ First we need a Kubernetes cluster running locally. There are many tools to pick
       <pubDate>Fri, 08 Jul 2022 20:16:37 +0200</pubDate>
       
       <guid>https://magsther.github.io/posts/hugo/</guid>
-      <description>Hugo in 9 steps Get a GitHub Account Create a GitHub repository and name it &amp;lt;username&amp;gt;.github.io. Create a Hugo project hugo new site . --force Pick a (Hugo) theme from here Add content to your new blog. hugo new posts/hugo.md Generate the blog by running hugo Push to GitHub Enable GitHub Pages Visit your published blog at https://.github.io </description>
+      <description>Hugo in 5 minutes Get a GitHub Account Create a GitHub repository and name it &amp;lt;username&amp;gt;.github.io. Create a Hugo project hugo new site . --force Pick a (Hugo) theme from here Add content to your new blog. hugo new posts/hugo.md Generate the blog by running hugo Push to GitHub Enable GitHub Pages Visit your published blog at https://.github.io </description>
     </item>
     
   </channel>

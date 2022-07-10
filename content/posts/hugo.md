@@ -8,7 +8,7 @@ tags:
   - untagged
 ---
 
-## Hugo in 9 steps
+## Hugo in 5 minutes
 
 1. Get a [GitHub]("https://www.github.com") Account
 2. Create a GitHub repository and name it `<username>.github.io.`  
