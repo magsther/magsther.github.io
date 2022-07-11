@@ -34,17 +34,18 @@ kind was primarily designed for testing Kubernetes itself, but may be used for l
             <pubDate>Fri, 08 Jul 2022 20:16:37 +0200</pubDate>
             
             <guid>https://magsther.github.io/posts/hugo/</guid>
-            <description>Hugo in 5 minutes [Hugo](https://gohugo.io/) is a static site generator written in Go.
-Static generators like ([Hugo](https://gohugo.io/)) let&amp;rsquo;s you focus on writing content.
-What about Wordpress? Done that.. What about building a blog using Django? Done that as well. A big advantage with using [Hugo](https://gohugo.io/), I don&amp;rsquo;t need need to mess around with hosting. GitHub provides free and fast static hosting over SSL and at the same time automates the whole process.</description>
+            <description>Hugo in 5 minutes Hugo is a static site generator written in Go.
+Static generators like Hugo let&amp;rsquo;s you focus on writing content.
+What about Wordpress? Done that.. What about building a blog using Django? Done that as well.
+A big advantage of using Hugo is that I don&amp;rsquo;t need need to mess around with hosting. GitHub provides free and fast static hosting over SSL and at the same time automates the whole process.</description>
             <content type="html"><![CDATA[<h2 id="hugo-in-5-minutes">Hugo in 5 minutes</h2>
-<p><strong>[Hugo]</strong>(<a href="https://gohugo.io/">https://gohugo.io/</a>) is a static site generator written in Go.</p>
-<p>Static generators like (<strong>[Hugo]</strong>(<a href="https://gohugo.io/">https://gohugo.io/</a>)) let&rsquo;s you focus on writing content.</p>
-<p>What about <strong>Wordpress</strong>? Done that.. What about building a blog using <strong>Django</strong>? Done that as well.
-A big advantage with using <strong>[Hugo]</strong>(<a href="https://gohugo.io/)">https://gohugo.io/)</a>, I don&rsquo;t need need to mess around with hosting.
+<p><a href="https://gohugo.io/">Hugo</a> is a static site generator written in Go.</p>
+<p>Static generators like <a href="https://gohugo.io/">Hugo</a> let&rsquo;s you focus on <strong>writing content</strong>.</p>
+<p>What about <strong>Wordpress</strong>? Done that.. What about building a blog using <strong>Django</strong>? Done that as well.</p>
+<p>A big advantage of using <strong>Hugo</strong> is that I don&rsquo;t need need to mess around with hosting.
 <a href="https://github.com">GitHub</a> provides <strong>free</strong> and <strong>fast</strong> static hosting over <strong>SSL</strong> and at the same time <strong>automates</strong> the whole process.
 That&rsquo;s a win, win and win:)</p>
-<p><strong>[Hugo]</strong>(<a href="https://gohugo.io/">https://gohugo.io/</a>) works almost out of the box, but still gives me the possibility to modify things if needed.</p>
+<p><strong>Hugo</strong> works almost out of the box, but still gives me the possibility to modify things if needed.</p>
 <h2 id="deploy-a-hugo-blog-in-less-than-10-steps">Deploy a Hugo blog in less than 10 steps</h2>
 <ol>
 <li>Get a <a href="%22https://www.github.com%22">GitHub</a> Account</li>
