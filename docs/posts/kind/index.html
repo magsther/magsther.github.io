@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles of how to manage Kubernetes resources via Terraform.
-First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , but the tool we will use is Kind." />
+<meta name="description" content="What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
+Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc." />
 <meta name="keywords" content=", kubernetes, kind, terraform" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -41,26 +41,26 @@ First we need a Kubernetes cluster running locally. There are many tools to pick
 
 
 <meta itemprop="name" content="Kind &amp; Terraform">
-<meta itemprop="description" content="Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles of how to manage Kubernetes resources via Terraform.
-First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , but the tool we will use is Kind."><meta itemprop="datePublished" content="2022-07-09T19:50:17+02:00" />
+<meta itemprop="description" content="What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
+Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc."><meta itemprop="datePublished" content="2022-07-09T19:50:17+02:00" />
 <meta itemprop="dateModified" content="2022-07-09T19:50:17+02:00" />
-<meta itemprop="wordCount" content="546"><meta itemprop="image" content="https://magsther.github.io"/>
+<meta itemprop="wordCount" content="605"><meta itemprop="image" content="https://magsther.github.io"/>
 <meta itemprop="keywords" content="kubernetes,kind,terraform," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://magsther.github.io"/>
 
 <meta name="twitter:title" content="Kind &amp; Terraform"/>
-<meta name="twitter:description" content="Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles of how to manage Kubernetes resources via Terraform.
-First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , but the tool we will use is Kind."/>
+<meta name="twitter:description" content="What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
+Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc."/>
 
 
 
     <meta property="og:title" content="Kind &amp; Terraform" />
-<meta property="og:description" content="Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles of how to manage Kubernetes resources via Terraform.
-First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , but the tool we will use is Kind." />
+<meta property="og:description" content="What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
+Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://magsther.github.io/posts/kind/" /><meta property="og:image" content="https://magsther.github.io"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-09T19:50:17+02:00" />
@@ -154,21 +154,32 @@ First we need a Kubernetes cluster running locally. There are many tools to pick
       
 
       <div class="post-content">
-        <h2 id="kind">Kind</h2>
-<p><a href="https://kind.sigs.k8s.io/">kind</a> is a tool for running local Kubernetes clusters using Docker container “nodes”.
-kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.</p>
-<p>This is the beginning of a series of articles of how to manage <strong>Kubernetes</strong> resources via <strong>Terraform</strong>.</p>
-<p>First we need a <strong>Kubernetes</strong> cluster running locally. There are many tools to pick from (<strong>minikube</strong>, <strong>K3s</strong>, <strong>MicroK8s</strong> etc..) , but the tool we will use is <strong>Kind</strong>.</p>
-<p>Note: To use kind, you will also need to install <a href="https://docs.docker.com/get-docker/">docker</a>.</p>
-<p>Even though we can easily create a new cluster by running <code>kind create cluster</code> we will be doing this by using <strong>Terraform</strong></p>
+        <h2 id="what-is-kind">What is Kind?</h2>
+<p><em><a href="https://kind.sigs.k8s.io/">kind</a> is a tool for running local Kubernetes clusters using Docker container “nodes”.
+kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.</em></p>
+<p>This is the beginning of a series of articles on how to manage <strong>Kubernetes</strong> resources via <strong>Terraform</strong>.</p>
+<h2 id="deploying-kind-using-terraform">Deploying Kind using Terraform</h2>
+<p>First we need a <strong>Kubernetes</strong> cluster running locally.
+There are many tools to pick from (<strong>minikube</strong>, <strong>K3s</strong>, <strong>MicroK8s</strong> etc..) , but the tool we will use is <strong>Kind</strong>.
+One of the things that I really like with Kind, is the support of multi-node (including HA) clusters.</p>
+<p>Note: To use kind, you will need to have <a href="https://docs.docker.com/get-docker/">docker</a> installed.</p>
+<p>Even though we can easily create a new cluster by running <code>kind create cluster</code> we will do this by using <strong>Terraform</strong></p>
+<p>Using <a href="https://www.terraform.io/">Terraform</a> to manage your Kubernetes resources have benefits like:</p>
+<ul>
+<li>Unified Workflow</li>
+<li>Full Lifecycle Management</li>
+<li>Graph of Relationships</li>
+</ul>
+<h2 id="terraform-registry">Terraform Registry</h2>
 <p>The best place to start when using Terraform <strong>providers</strong> is the <strong>Terraform Registry</strong>.
-In this case, since we want to use Kind, we go there and search for <a href="https://registry.terraform.io/providers/tehcyx/kind/0.0.13">Kind</a></p>
-<p>The <strong>Use Provider</strong> button, shows an example of how to use the provider.</p>
-<p>Let&rsquo;s use this, in our example.</p>
+Since we want to use <strong>Kind</strong>, we search for <a href="https://registry.terraform.io/providers/tehcyx/kind/0.0.13">Kind</a></p>
+<p>The <strong>Use Provider</strong> button (at the top right corner), shows an example of how to use the provider.</p>
+<p>We can use this as a template.</p>
+<h2 id="setting-up-the-structure">Setting up the structure</h2>
 <p>Create a new folder on your workstation:
 <code>mkdir kind-demo</code></p>
-<p>Create a <code>main.tf</code> which will hold the configuraton of your <strong>Kind</strong> cluster.</p>
-<p>This cluster will contain one node with the role <strong>control-plane</strong> and one node simply called <strong>worker</strong>.</p>
+<p>Create a <code>main.tf</code>. This file will hold the configuraton of the <strong>Kind</strong> cluster.</p>
+<p>As you can see from the code below, our cluster will contain one node with the role <strong>control-plane</strong> and one node simply called <strong>worker</strong>.</p>
 <p>Paste in the following code:</p>
 <pre tabindex="0"><code>terraform {
   required_providers {
@@ -199,7 +210,7 @@ provider &#34;kind&#34; {}
       }
     }
   }
-</code></pre><p>We can easily add more <strong>worker</strong> nodes by adding:</p>
+</code></pre><p>If you want to add additional nodes, you can just add them to the code like this:</p>
 <pre tabindex="0"><code>    node {
       role = &#34;worker&#34;
     }
@@ -213,8 +224,8 @@ Initializing provider plugins...
 - Installed tehcyx/kind v0.0.13
 ...
 Terraform has been successfully initialized!
-</code></pre><p>Now run <code>terraform plan</code>.
-This creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.</p>
+</code></pre><p>Now run <code>terraform plan</code>.</p>
+<p>The <strong>plan</strong> creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.</p>
 <pre tabindex="0"><code>Terraform will perform the following actions:
 
   # kind_cluster.default will be created
@@ -246,9 +257,9 @@ This creates an execution plan, which lets you preview the changes that Terrafor
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 </code></pre><p>Apply the changes by running <code>terraform apply</code></p>
-<p>This command executes the actions proposed in a Terraform <strong>plan</strong> to create, update, or destroy infrastructure.</p>
-<p>Once completed, your new Kubernetes cluster is created.</p>
-<p>Let&rsquo;s do some interaction with our cluster.</p>
+<p>This command executes the actions proposed in a Terraform <strong>plan</strong>.</p>
+<p>Once completed, your new <strong>Kubernetes</strong> cluster is created.</p>
+<p>Let&rsquo;s do some interactions with our cluster.</p>
 <p><code>kubectl cluster-info </code></p>
 <pre tabindex="0"><code>Kubernetes control plane is running at https://127.0.0.1:53839
 CoreDNS is running at https://127.0.0.1:53839/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
@@ -286,7 +297,7 @@ kindcluster-worker          Ready    &lt;none&gt;          3m20s   v1.24.0
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        546 Words
+        605 Words
       </p>
 
       <p>

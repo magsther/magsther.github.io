@@ -10,31 +10,41 @@ tags:
   - terraform
 ---
 
-## Kind
-[kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker container “nodes”.
-kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+## What is Kind?
+*[kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker container “nodes”.
+kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.*
 
-This is the beginning of a series of articles of how to manage **Kubernetes** resources via **Terraform**.
+This is the beginning of a series of articles on how to manage **Kubernetes** resources via **Terraform**.
 
-First we need a **Kubernetes** cluster running locally. There are many tools to pick from (**minikube**, **K3s**, **MicroK8s** etc..) , but the tool we will use is **Kind**.
+## Deploying Kind using Terraform
+First we need a **Kubernetes** cluster running locally. 
+There are many tools to pick from (**minikube**, **K3s**, **MicroK8s** etc..) , but the tool we will use is **Kind**. 
+One of the things that I really like with Kind, is the support of multi-node (including HA) clusters.
 
-Note: To use kind, you will also need to install [docker](https://docs.docker.com/get-docker/). 
+Note: To use kind, you will need to have [docker](https://docs.docker.com/get-docker/) installed.
 
-Even though we can easily create a new cluster by running `kind create cluster` we will be doing this by using **Terraform**
+Even though we can easily create a new cluster by running `kind create cluster` we will do this by using **Terraform**
 
+Using [Terraform](https://www.terraform.io/) to manage your Kubernetes resources have benefits like:
+- Unified Workflow
+- Full Lifecycle Management
+- Graph of Relationships
+
+## Terraform Registry
 The best place to start when using Terraform **providers** is the **Terraform Registry**.
-In this case, since we want to use Kind, we go there and search for [Kind](https://registry.terraform.io/providers/tehcyx/kind/0.0.13)
+Since we want to use **Kind**, we search for [Kind](https://registry.terraform.io/providers/tehcyx/kind/0.0.13)
 
-The **Use Provider** button, shows an example of how to use the provider.
+The **Use Provider** button (at the top right corner), shows an example of how to use the provider.
 
-Let's use this, in our example.
+We can use this as a template.
 
+## Setting up the structure
 Create a new folder on your workstation:
 `mkdir kind-demo`
 
-Create a `main.tf` which will hold the configuraton of your **Kind** cluster.
+Create a `main.tf`. This file will hold the configuraton of the **Kind** cluster.
 
-This cluster will contain one node with the role **control-plane** and one node simply called **worker**.
+As you can see from the code below, our cluster will contain one node with the role **control-plane** and one node simply called **worker**.
 
 Paste in the following code:
 
@@ -70,8 +80,8 @@ provider "kind" {}
   }
   ```
 
-  We can easily add more **worker** nodes by adding:
-
+  If you want to add additional nodes, you can just add them to the code like this:
+  
   ```
       node {
         role = "worker"
@@ -94,7 +104,8 @@ Terraform has been successfully initialized!
 ```
 
 Now run `terraform plan`. 
-This creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.
+
+The **plan** creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.
 
 ```
 Terraform will perform the following actions:
@@ -131,11 +142,11 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 Apply the changes by running `terraform apply`
 
-This command executes the actions proposed in a Terraform **plan** to create, update, or destroy infrastructure.
+This command executes the actions proposed in a Terraform **plan**.
 
-Once completed, your new Kubernetes cluster is created. 
+Once completed, your new **Kubernetes** cluster is created. 
 
-Let's do some interaction with our cluster.
+Let's do some interactions with our cluster.
 
 `kubectl cluster-info `
 

@@ -14,9 +14,9 @@
       <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
       
       <guid>https://magsther.github.io/posts/kind/</guid>
-      <description>Kind kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles of how to manage Kubernetes resources via Terraform.
-First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , but the tool we will use is Kind.</description>
+      <description>What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
+Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc.</description>
     </item>
     
   </channel>
