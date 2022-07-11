@@ -5,7 +5,7 @@ draft: false
 toc: false
 images:
 tags:
-  - untagged
+  - hugo
 ---
 
 ## Hugo in 5 minutes

@@ -19,17 +19,5 @@ We still start a series of articles of how to manage Kubernetes resources via Te
 First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc..) , and the tool we will use is Kind.</description>
     </item>
     
-    <item>
-      <title>Hugo</title>
-      <link>https://magsther.github.io/posts/hugo/</link>
-      <pubDate>Fri, 08 Jul 2022 20:16:37 +0200</pubDate>
-      
-      <guid>https://magsther.github.io/posts/hugo/</guid>
-      <description>Hugo in 5 minutes Hugo is a static site generator written in Go.
-Static generators like Hugo let&amp;rsquo;s you focus on writing content.
-What about Wordpress? Done that.. What about building a blog using Django? Done that as well.
-A big advantage of using Hugo is that I don&amp;rsquo;t need need to mess around with hosting. GitHub provides free and fast static hosting over SSL and at the same time automates the whole process.</description>
-    </item>
-    
   </channel>
 </rss>
