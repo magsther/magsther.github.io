@@ -12,12 +12,15 @@ tags:
 
 **[Hugo]**(https://gohugo.io/) is a static site generator written in Go.
 
-What about **Wordpress**? Done that.. What about building a blog using **Django**? Done that.. 
+Static generators like (**[Hugo]**(https://gohugo.io/)) let's you focus on writing content. 
 
-I picked **Hugo** because I don't want to mess around with hosting and just focus on writing content.
-For me static site generators (like **Hugo**) works out of the box, but still gives me the possibility to modify things if needed. 
+What about **Wordpress**? Done that.. What about building a blog using **Django**? Done that as well.
+A big advantage with using **[Hugo]**(https://gohugo.io/), I don't need need to mess around with hosting. 
+[GitHub](https://github.com) provides **free** and **fast** static hosting over **SSL** and at the same time **automates** the whole process. 
+That's a win, win and win:) 
 
-GitHub provides free and fast static hosting over SSL and at the same time automates the whole process. Yeeah ! :) 
+**[Hugo]**(https://gohugo.io/) works almost out of the box, but still gives me the possibility to modify things if needed. 
+
 
 ## Deploy a Hugo blog in less than 10 steps 
 
