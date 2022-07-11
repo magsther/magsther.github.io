@@ -45,7 +45,7 @@ Deploying Kind using Terraform First we need a Kubernetes cluster running locall
 This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
 Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc."><meta itemprop="datePublished" content="2022-07-09T19:50:17+02:00" />
 <meta itemprop="dateModified" content="2022-07-09T19:50:17+02:00" />
-<meta itemprop="wordCount" content="605"><meta itemprop="image" content="https://magsther.github.io"/>
+<meta itemprop="wordCount" content="599"><meta itemprop="image" content="https://magsther.github.io"/>
 <meta itemprop="keywords" content="kubernetes,kind,terraform," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://magsther.github.io"/>
@@ -180,7 +180,7 @@ Since we want to use <strong>Kind</strong>, we search for <a href="https://regis
 <code>mkdir kind-demo</code></p>
 <p>Create a <code>main.tf</code>. This file will hold the configuraton of the <strong>Kind</strong> cluster.</p>
 <p>As you can see from the code below, our cluster will contain one node with the role <strong>control-plane</strong> and one node simply called <strong>worker</strong>.</p>
-<p>Paste in the following code:</p>
+<p>Paste the following code:</p>
 <pre tabindex="0"><code>terraform {
   required_providers {
     kind = {
@@ -261,9 +261,8 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 <p>Once completed, your new <strong>Kubernetes</strong> cluster is created.</p>
 <p>Let&rsquo;s do some interactions with our cluster.</p>
 <p><code>kubectl cluster-info </code></p>
-<pre tabindex="0"><code>Kubernetes control plane is running at https://127.0.0.1:53839
-CoreDNS is running at https://127.0.0.1:53839/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-</code></pre><p><code>kubectl get nodes</code></p>
+<p><code>Kubernetes control plane is running at https://127.0.0.1:53839</code></p>
+<p><code>kubectl get nodes</code></p>
 <pre tabindex="0"><code>NAME                        STATUS   ROLES           AGE     VERSION
 kindcluster-control-plane   Ready    control-plane   3m48s   v1.24.0
 kindcluster-worker          Ready    &lt;none&gt;          3m20s   v1.24.0
@@ -297,7 +296,7 @@ kindcluster-worker          Ready    &lt;none&gt;          3m20s   v1.24.0
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        605 Words
+        599 Words
       </p>
 
       <p>

@@ -46,7 +46,7 @@ Create a `main.tf`. This file will hold the configuraton of the **Kind** cluster
 
 As you can see from the code below, our cluster will contain one node with the role **control-plane** and one node simply called **worker**.
 
-Paste in the following code:
+Paste the following code:
 
 ```
 terraform {
@@ -150,10 +150,7 @@ Let's do some interactions with our cluster.
 
 `kubectl cluster-info `
 
-```
-Kubernetes control plane is running at https://127.0.0.1:53839
-CoreDNS is running at https://127.0.0.1:53839/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-```
+`Kubernetes control plane is running at https://127.0.0.1:53839`
 
 `kubectl get nodes`
 
