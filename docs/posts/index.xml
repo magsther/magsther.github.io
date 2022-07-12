@@ -6,8 +6,154 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 09 Jul 2022 19:50:17 +0200</lastBuildDate>
+        <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate>
         <atom:link href="https://magsther.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Kubeprometheus</title>
+            <link>https://magsther.github.io/posts/kubeprometheus/</link>
+            <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
+            
+            <guid>https://magsther.github.io/posts/kubeprometheus/</guid>
+            <description>Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+Let&amp;rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
+What is Kube-Prometheus? Kube-Prometheus is magic ;)
+You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
+The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</description>
+            <content type="html"><![CDATA[<h2 id="deploying-kube-prometheus-using-terraform-and-helm">Deploying Kube-Prometheus using Terraform (and Helm)</h2>
+<p>In the previous post we deployed our <strong>Kind</strong> cluster using <strong>Terraform</strong>.</p>
+<p>Let&rsquo;s continue and add the <a href="https://github.com/prometheus-operator/kube-prometheus">kube-prometheus</a> stack to our Kubernetes cluster.</p>
+<h2 id="what-is-kube-prometheus">What is Kube-Prometheus?</h2>
+<p><strong>Kube-Prometheus</strong> is magic ;)</p>
+<p>You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components.
+This means, <strong>prometheus</strong> , some default set of <strong>rules</strong> and pre-configured <strong>Grafana</strong> dashboards!!!</p>
+<p>The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</p>
+<h2 id="terraform-providers-and-authentication">Terraform providers and authentication</h2>
+<p>While we could deploy <strong>kube-prometheus</strong> by running <code>helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 36.6.2</code>, we will create a <strong>terraform</strong> modules for this.</p>
+<p>Before creating our new modules, we need to add the following providers to our root module.</p>
+<ul>
+<li><a href="https://registry.terraform.io/providers/hashicorp/helm/latest/docs">Helm</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs">Kubernetes</a></li>
+</ul>
+<blockquote>
+<p>Remember, if you are going to use <strong>providers</strong> (like <strong>helm</strong>, <strong>kubernetes</strong>), you will need to add them to your code.</p>
+</blockquote>
+<p>while you could add this to the <code>main.tf</code> file, it&rsquo;s usually better to seperate it into it&rsquo;s own file.</p>
+<p>Add this content to <code>provders.tf</code></p>
+<pre tabindex="0"><code># For authentication, the Helm provider can get its configuration by supplying a path to your kubeconfig file.
+provider &#34;helm&#34; {
+  kubernetes {
+    config_path = &#34;~/.kube/config&#34;
+  }
+}
+
+# Used to interact with the resources supported by Kubernetes.
+# The provider needs to be configured with the proper credentials before it can be used.
+provider &#34;kubernetes&#34; {
+  config_path = pathexpand(var.kube_config)
+}
+</code></pre><p>Create a new file called <code>variables.tf</code> with this content:</p>
+<pre tabindex="0"><code>variable &#34;kube_config&#34; {
+  type    = string
+  default = &#34;~/.kube/config&#34;
+}
+</code></pre><h2 id="create-the-terraform-module">Create the Terraform module</h2>
+<p>Now, we can start with our module.</p>
+<p>Create a new folder called <code>modules</code> and inside that a new folder with the name of your module. In our case, this will be <code>kube-prometheus</code>.</p>
+<p>Create a new file in that folder and name it <code>main.tf</code></p>
+<p>Add this content to that file:</p>
+<pre tabindex="0"><code>resource &#34;helm_release&#34; &#34;kube-prometheus&#34; {
+  name       = &#34;kube-prometheus-stackr&#34;
+  namespace  = var.namespace
+  version    = var.kube-version
+  repository = &#34;https://prometheus-community.github.io/helm-charts&#34;
+  chart      = &#34;kube-prometheus-stack&#34;
+}
+</code></pre><p>How did we know which <strong>helm chart</strong> to use?
+Well, we went to <a href="https://artifacthub.io/">artifacthub</a> which is a web-based application that contains <strong>Kubernetes</strong> packages.</p>
+<p>We searched for <strong>kube-prometheus</strong>, so we put that in the search bar, which gave us information how to deploy it using <a href="https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack">Helm</a></p>
+<p>Next, we went to <a href="https://registry.terraform.io/providers/hashicorp/helm/latest/docs">Terraform Registry</a> to look up the <strong>Helm</strong> provider.</p>
+<h2 id="namespaces">Namespaces</h2>
+<p>Creating namespace with the Kubernetes provider is better than auto-creation in the helm_release.</p>
+<p>Create a new file  called <code>namespaces.tf</code> with the following content:</p>
+<pre tabindex="0"><code>resource &#34;kubernetes_namespace&#34; &#34;monitoring&#34; {
+  metadata {
+    name = var.namespace
+  }
+}
+</code></pre><p>In the <code>variables.tf</code> file we will add our input variables.</p>
+<p>Note, here we set the default value of our namespace to <strong>monitoring</strong></p>
+<pre tabindex="0"><code>variable &#34;kube_config&#34; {
+  type    = string
+  default = &#34;~/.kube/config&#34;
+}
+
+variable &#34;namespace&#34; {
+  type    = string
+  default = &#34;monitoring&#34;
+}
+
+variable &#34;kube-version&#34; {
+}
+</code></pre><p>The last step we need to do is to &ldquo;call&rdquo; our module from the <code>main.tf</code> file in the root module.</p>
+<pre tabindex="0"><code>module &#34;kube&#34; {
+  source = &#34;./modules/kube-prometheus&#34;
+  kube-version = &#34;36.2.0&#34;
+}
+</code></pre><h2 id="deploying-using-terraform">Deploying using Terraform</h2>
+<p>Since we added a new module, we need to run <code>terraform init</code> to install this since its required by the configuration.</p>
+<p>If we now run <code>terraform plan</code>, it should detect our changes.</p>
+<pre tabindex="0"><code>...
+....
+# module.kube.kubernetes_namespace.monitoring will be created
+  + resource &#34;kubernetes_namespace&#34; &#34;monitoring&#34; {
+      + id = (known after apply)
+
+      + metadata {
+          + generation       = (known after apply)
+          + name             = &#34;monitoring&#34;
+          + resource_version = (known after apply)
+          + uid              = (known after apply)
+        }
+    }
+</code></pre><p>Apply the terraform plan with <code>terraform apply</code></p>
+<p>After a little while <strong>kube-prometheus</strong> is installed to our <strong>Kubernetes</strong> cluster.</p>
+<h2 id="interacting-with-kube-prometheus">Interacting with Kube-Prometheus</h2>
+<p>Let&rsquo;s have a look of what was deployed in the previous step.</p>
+<p>First, check what <strong>pods</strong> are running:</p>
+<p><code>kubectl get pods -n monitoring</code></p>
+<pre tabindex="0"><code>NAME                                                        READY   STATUS    RESTARTS   AGE
+alertmanager-kube-prometheus-stackr-alertmanager-0          2/2     Running   0          66m
+kube-prometheus-stackr-grafana-7cd9d66c5c-rhxsm             3/3     Running   0          66m
+kube-prometheus-stackr-kube-state-metrics-98cbcdf4b-2x8qp   1/1     Running   0          66m
+kube-prometheus-stackr-operator-7bbddd8bb4-b9pcv            1/1     Running   0          66m
+kube-prometheus-stackr-prometheus-node-exporter-njjx6       1/1     Running   0          66m
+kube-prometheus-stackr-prometheus-node-exporter-p8nnq       1/1     Running   0          66m
+prometheus-kube-prometheus-stackr-prometheus-0              2/2     Running   0          66m
+</code></pre><p>Let&rsquo;s check what <strong>services</strong> are deployed:</p>
+<p><code>kubectl get svc --namespace monitoring</code></p>
+<pre tabindex="0"><code>NAME                                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+alertmanager-operated                             ClusterIP   None            &lt;none&gt;        9093/TCP,9094/TCP,9094/UDP   69m
+kube-prometheus-stackr-alertmanager               ClusterIP   10.96.49.165    &lt;none&gt;        9093/TCP                     70m
+kube-prometheus-stackr-grafana                    ClusterIP   10.96.91.188    &lt;none&gt;        80/TCP                       70m
+kube-prometheus-stackr-kube-state-metrics         ClusterIP   10.96.38.109    &lt;none&gt;        8080/TCP                     70m
+kube-prometheus-stackr-operator                   ClusterIP   10.96.44.188    &lt;none&gt;        443/TCP                      70m
+kube-prometheus-stackr-prometheus                 ClusterIP   10.96.168.194   &lt;none&gt;        9090/TCP                     70m
+kube-prometheus-stackr-prometheus-node-exporter   ClusterIP   10.96.131.191   &lt;none&gt;        9100/TCP                     70m
+prometheus-operated                               ClusterIP   None            &lt;none&gt;        9090/TCP                     69m
+</code></pre><h3 id="accessing-prometheus">Accessing Prometheus</h3>
+<p>To access <strong>Prometheus</strong>, we can use <strong>port forwarding</strong>.</p>
+<p><code>kubectl port-forward</code> allows using resource name, such as a pod name, to select a matching pod to port forward to.</p>
+<p><code>kubectl port-forward svc/kube-prometheus-stackr-prometheus 9090:9090 --namespace monitoring</code></p>
+<p><code>Forwarding from 127.0.0.1:9090 -&gt; 9090</code></p>
+<p>Open a browser and go to: <code>http://localhost:9090/</code> to see the Prometehus UI.</p>
+<h3 id="accessing-grafana">Accessing Grafana</h3>
+<p>Similar, to access <strong>Grafana</strong>, use this command:</p>
+<p><code>kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 --namespace monitoring</code></p>
+<h3 id="accessing-alertmanager">Accessing Alertmanager</h3>
+<p><code>kubectl port-forward svc/kube-prometheus-stackr-alertmanager 9093:9093 --namespace monitoring</code></p>
+]]></content>
+        </item>
         
         <item>
             <title>Kind &amp; Terraform</title>

@@ -7,31 +7,58 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 09 Jul 2022 19:50:17 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>kind</title>
-      <link>https://magsther.github.io/tags/kind/</link>
-      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
+      <title>helm</title>
+      <link>https://magsther.github.io/tags/helm/</link>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
       
-      <guid>https://magsther.github.io/tags/kind/</guid>
+      <guid>https://magsther.github.io/tags/helm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kube-prometheus</title>
+      <link>https://magsther.github.io/tags/kube-prometheus/</link>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/tags/kube-prometheus/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
       <link>https://magsther.github.io/tags/kubernetes/</link>
-      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
       
       <guid>https://magsther.github.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>observability</title>
+      <link>https://magsther.github.io/tags/observability/</link>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/tags/observability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>terraform</title>
       <link>https://magsther.github.io/tags/terraform/</link>
-      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
       
       <guid>https://magsther.github.io/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kind</title>
+      <link>https://magsther.github.io/tags/kind/</link>
+      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/tags/kind/</guid>
       <description></description>
     </item>
     

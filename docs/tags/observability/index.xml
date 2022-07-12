@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on Magsther&#39;s Blog</title>
-    <link>https://magsther.github.io/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on Magsther&#39;s Blog</description>
+    <title>observability on Magsther&#39;s Blog</title>
+    <link>https://magsther.github.io/tags/observability/</link>
+    <description>Recent content in observability on Magsther&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/observability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubeprometheus</title>
       <link>https://magsther.github.io/posts/kubeprometheus/</link>
@@ -19,17 +19,6 @@ Let&amp;rsquo;s continue and add the kube-prometheus stack to our Kubernetes clu
 What is Kube-Prometheus? Kube-Prometheus is magic ;)
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
 The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</description>
-    </item>
-    
-    <item>
-      <title>Kind &amp; Terraform</title>
-      <link>https://magsther.github.io/posts/kind/</link>
-      <pubDate>Sat, 09 Jul 2022 19:50:17 +0200</pubDate>
-      
-      <guid>https://magsther.github.io/posts/kind/</guid>
-      <description>What is Kind? kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
-This is the beginning of a series of articles on how to manage Kubernetes resources via Terraform.
-Deploying Kind using Terraform First we need a Kubernetes cluster running locally. There are many tools to pick from (minikube, K3s, MicroK8s etc.</description>
     </item>
     
   </channel>

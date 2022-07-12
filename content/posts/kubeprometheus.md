@@ -1,7 +1,7 @@
 ---
 title: "Kubeprometheus"
 date: 2022-07-11T20:37:53+02:00
-draft: true
+draft: false
 toc: false
 images:
 tags:
@@ -177,7 +177,7 @@ prometheus-kube-prometheus-stackr-prometheus-0              2/2     Running   0 
 
 Let's check what **services** are deployed:
 
-`kubectl get svc -n monitoring`
+`kubectl get svc --namespace monitoring`
 
 ```
 NAME                                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
@@ -207,3 +207,6 @@ Open a browser and go to: `http://localhost:9090/` to see the Prometehus UI.
 Similar, to access **Grafana**, use this command:
 
 `kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 --namespace monitoring`
+
+### Accessing Alertmanager
+`kubectl port-forward svc/kube-prometheus-stackr-alertmanager 9093:9093 --namespace monitoring`

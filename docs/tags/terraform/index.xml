@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 09 Jul 2022 19:50:17 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubeprometheus</title>
+      <link>https://magsther.github.io/posts/kubeprometheus/</link>
+      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/posts/kubeprometheus/</guid>
+      <description>Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+Let&amp;rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
+What is Kube-Prometheus? Kube-Prometheus is magic ;)
+You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
+The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</description>
+    </item>
+    
     <item>
       <title>Kind &amp; Terraform</title>
       <link>https://magsther.github.io/posts/kind/</link>

@@ -2,25 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://magsther.github.io/tags/helm/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/tags/kube-prometheus/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/posts/kubeprometheus/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/tags/kubernetes/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/tags/observability/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/posts/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/tags/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
+    <loc>https://magsther.github.io/tags/terraform/</loc>
+    <lastmod>2022-07-11T20:37:53+02:00</lastmod>
+  </url><url>
     <loc>https://magsther.github.io/tags/kind/</loc>
     <lastmod>2022-07-09T19:50:17+02:00</lastmod>
   </url><url>
     <loc>https://magsther.github.io/posts/kind/</loc>
-    <lastmod>2022-07-09T19:50:17+02:00</lastmod>
-  </url><url>
-    <loc>https://magsther.github.io/tags/kubernetes/</loc>
-    <lastmod>2022-07-09T19:50:17+02:00</lastmod>
-  </url><url>
-    <loc>https://magsther.github.io/</loc>
-    <lastmod>2022-07-09T19:50:17+02:00</lastmod>
-  </url><url>
-    <loc>https://magsther.github.io/posts/</loc>
-    <lastmod>2022-07-09T19:50:17+02:00</lastmod>
-  </url><url>
-    <loc>https://magsther.github.io/tags/</loc>
-    <lastmod>2022-07-09T19:50:17+02:00</lastmod>
-  </url><url>
-    <loc>https://magsther.github.io/tags/terraform/</loc>
     <lastmod>2022-07-09T19:50:17+02:00</lastmod>
   </url><url>
     <loc>https://magsther.github.io/tags/hugo/</loc>
