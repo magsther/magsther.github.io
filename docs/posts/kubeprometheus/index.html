@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+<meta name="description" content="Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
 Let&amp;rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
 What is Kube-Prometheus? Kube-Prometheus is magic ;)
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
@@ -43,7 +43,7 @@ The only prerequisites we need is a Kubernetes cluster, which we deployed in our
 
 
 <meta itemprop="name" content="Kube-Prometheus (with Terraform and Helm)">
-<meta itemprop="description" content="Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+<meta itemprop="description" content="Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
 Let&rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
 What is Kube-Prometheus? Kube-Prometheus is magic ;)
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
@@ -55,7 +55,7 @@ The only prerequisites we need is a Kubernetes cluster, which we deployed in our
 <meta name="twitter:image" content="https://magsther.github.io"/>
 
 <meta name="twitter:title" content="Kube-Prometheus (with Terraform and Helm)"/>
-<meta name="twitter:description" content="Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+<meta name="twitter:description" content="Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
 Let&rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
 What is Kube-Prometheus? Kube-Prometheus is magic ;)
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
@@ -64,7 +64,7 @@ The only prerequisites we need is a Kubernetes cluster, which we deployed in our
 
 
     <meta property="og:title" content="Kube-Prometheus (with Terraform and Helm)" />
-<meta property="og:description" content="Deploying Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
+<meta property="og:description" content="Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
 Let&rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
 What is Kube-Prometheus? Kube-Prometheus is magic ;)
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
@@ -162,15 +162,15 @@ The only prerequisites we need is a Kubernetes cluster, which we deployed in our
       
 
       <div class="post-content">
-        <h2 id="deploying-kube-prometheus-using-terraform-and-helm">Deploying Kube-Prometheus using Terraform (and Helm)</h2>
+        <h3 id="kube-prometheus-using-terraform-and-helm">Kube-Prometheus using Terraform (and Helm)</h3>
 <p>In the previous post we deployed our <strong>Kind</strong> cluster using <strong>Terraform</strong>.</p>
 <p>Let&rsquo;s continue and add the <a href="https://github.com/prometheus-operator/kube-prometheus">kube-prometheus</a> stack to our Kubernetes cluster.</p>
-<h2 id="what-is-kube-prometheus">What is Kube-Prometheus?</h2>
+<h3 id="what-is-kube-prometheus">What is Kube-Prometheus?</h3>
 <p><strong>Kube-Prometheus</strong> is magic ;)</p>
 <p>You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components.
 This means, <strong>prometheus</strong> , some default set of <strong>rules</strong> and pre-configured <strong>Grafana</strong> dashboards!!!</p>
 <p>The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</p>
-<h2 id="terraform-providers-and-authentication">Terraform providers and authentication</h2>
+<h3 id="terraform-providers-and-authentication">Terraform providers and authentication</h3>
 <p>While we could deploy <strong>kube-prometheus</strong> by running <code>helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 36.6.2</code>, we will create a <strong>terraform</strong> modules for this.</p>
 <p>Before creating our new modules, we need to add the following providers to our root module.</p>
 <ul>
@@ -199,7 +199,7 @@ provider &#34;kubernetes&#34; {
   type    = string
   default = &#34;~/.kube/config&#34;
 }
-</code></pre><h2 id="create-the-terraform-module">Create the Terraform module</h2>
+</code></pre><h3 id="create-the-terraform-module">Create the Terraform module</h3>
 <p>Now, we can start with our module.</p>
 <p>Create a new folder called <code>modules</code> and inside that a new folder with the name of your module. In our case, this will be <code>kube-prometheus</code>.</p>
 <p>Create a new file in that folder and name it <code>main.tf</code></p>
@@ -215,7 +215,7 @@ provider &#34;kubernetes&#34; {
 Well, we went to <a href="https://artifacthub.io/">artifacthub</a> which is a web-based application that contains <strong>Kubernetes</strong> packages.</p>
 <p>We searched for <strong>kube-prometheus</strong>, so we put that in the search bar, which gave us information how to deploy it using <a href="https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack">Helm</a></p>
 <p>Next, we went to <a href="https://registry.terraform.io/providers/hashicorp/helm/latest/docs">Terraform Registry</a> to look up the <strong>Helm</strong> provider.</p>
-<h2 id="namespaces">Namespaces</h2>
+<h3 id="namespaces">Namespaces</h3>
 <p>Creating namespace with the Kubernetes provider is better than auto-creation in the helm_release.</p>
 <p>Create a new file  called <code>namespaces.tf</code> with the following content:</p>
 <pre tabindex="0"><code>resource &#34;kubernetes_namespace&#34; &#34;monitoring&#34; {
@@ -223,7 +223,8 @@ Well, we went to <a href="https://artifacthub.io/">artifacthub</a> which is a we
     name = var.namespace
   }
 }
-</code></pre><p>In the <code>variables.tf</code> file we will add our input variables.</p>
+</code></pre><h3 id="variables">Variables</h3>
+<p>In the <code>variables.tf</code> file we will add our input variables.</p>
 <p>Note, here we set the default value of our namespace to <strong>monitoring</strong></p>
 <pre tabindex="0"><code>variable &#34;kube_config&#34; {
   type    = string
@@ -242,7 +243,7 @@ variable &#34;kube-version&#34; {
   source = &#34;./modules/kube-prometheus&#34;
   kube-version = &#34;36.2.0&#34;
 }
-</code></pre><h2 id="deploying-using-terraform">Deploying using Terraform</h2>
+</code></pre><h3 id="deploying-using-terraform">Deploying using Terraform</h3>
 <p>Since we added a new module, we need to run <code>terraform init</code> to install this since its required by the configuration.</p>
 <p>If we now run <code>terraform plan</code>, it should detect our changes.</p>
 <pre tabindex="0"><code>...
@@ -260,7 +261,7 @@ variable &#34;kube-version&#34; {
     }
 </code></pre><p>Apply the terraform plan with <code>terraform apply</code></p>
 <p>After a little while <strong>kube-prometheus</strong> is installed to our <strong>Kubernetes</strong> cluster.</p>
-<h2 id="interacting-with-kube-prometheus">Interacting with Kube-Prometheus</h2>
+<h3 id="interacting-with-kube-prometheus">Interacting with Kube-Prometheus</h3>
 <p>Let&rsquo;s have a look of what was deployed in the previous step.</p>
 <p>First, check what <strong>pods</strong> are running:</p>
 <p><code>kubectl get pods -n monitoring</code></p>

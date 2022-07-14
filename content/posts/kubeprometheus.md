@@ -12,13 +12,13 @@ tags:
   - observability
 ---
 
-## Deploying Kube-Prometheus using Terraform (and Helm)
+### Kube-Prometheus using Terraform (and Helm)
 
 In the previous post we deployed our **Kind** cluster using **Terraform**.
 
 Let's continue and add the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) stack to our Kubernetes cluster.
 
-## What is Kube-Prometheus?
+### What is Kube-Prometheus?
 **Kube-Prometheus** is magic ;)
 
 You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components.
@@ -26,7 +26,7 @@ This means, **prometheus** , some default set of **rules** and pre-configured **
 
 The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.
 
-## Terraform providers and authentication
+### Terraform providers and authentication
 While we could deploy **kube-prometheus** by running `helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 36.6.2`, we will create a **terraform** modules for this.
 
 Before creating our new modules, we need to add the following providers to our root module. 
@@ -63,7 +63,7 @@ variable "kube_config" {
 }
 ```
 
-## Create the Terraform module
+### Create the Terraform module
 Now, we can start with our module.
 
 Create a new folder called `modules` and inside that a new folder with the name of your module. In our case, this will be `kube-prometheus`. 
@@ -89,7 +89,7 @@ We searched for **kube-prometheus**, so we put that in the search bar, which gav
 
 Next, we went to [Terraform Registry](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) to look up the **Helm** provider.
 
-## Namespaces
+### Namespaces
 Creating namespace with the Kubernetes provider is better than auto-creation in the helm_release.
 
 Create a new file  called `namespaces.tf` with the following content:
@@ -102,6 +102,7 @@ resource "kubernetes_namespace" "monitoring" {
 }
 ```
 
+### Variables
 In the `variables.tf` file we will add our input variables. 
 
 Note, here we set the default value of our namespace to **monitoring**
@@ -130,7 +131,7 @@ module "kube" {
 }
 ```
 
-## Deploying using Terraform
+### Deploying using Terraform
 
 Since we added a new module, we need to run `terraform init` to install this since its required by the configuration.
 
@@ -156,7 +157,7 @@ Apply the terraform plan with `terraform apply`
 
 After a little while **kube-prometheus** is installed to our **Kubernetes** cluster.
 
-## Interacting with Kube-Prometheus
+### Interacting with Kube-Prometheus
 
 Let's have a look of what was deployed in the previous step.
 

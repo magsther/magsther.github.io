@@ -10,13 +10,13 @@ tags:
   - terraform
 ---
 
-# What is Elastic Cloud?
+### What is Elastic Cloud?
 *Elastic Cloud is the best way to consume all of Elastic's products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.*
 
-# What is Kubernetes?
+### What is Kubernetes?
 *Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms.*
 
-# Elastic Cloud on Kubernetes
+### Elastic Cloud on Kubernetes
 We will use our [Kind](https://magsther.github.io/posts/kind/) that we deployed earlier.
 
 Elastic has created a good [quickstart](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html) on how to **manually** deploy **Elastic Cloud on Kubernetes** (short ECK).
