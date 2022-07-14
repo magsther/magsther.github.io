@@ -1,5 +1,5 @@
 ---
-title: "Kubeprometheus"
+title: "Kube-Prometheus (with Terraform and Helm)"
 date: 2022-07-11T20:37:53+02:00
 draft: false
 toc: false
