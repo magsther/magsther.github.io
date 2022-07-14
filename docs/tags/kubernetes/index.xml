@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jul 2022 15:47:55 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elastic Cloud on Kubernetes</title>
+      <link>https://magsther.github.io/posts/elastic/</link>
+      <pubDate>Thu, 14 Jul 2022 15:47:55 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/posts/elastic/</guid>
+      <description>What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&amp;rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms.</description>
+    </item>
+    
     <item>
       <title>Kube-Prometheus (with Terraform and Helm)</title>
       <link>https://magsther.github.io/posts/kubeprometheus/</link>

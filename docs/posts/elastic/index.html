@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&amp;rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms." />
+<meta name="keywords" content=", kubernetes, elastic, terraform" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://magsther.github.io/posts/elastic/" />
+
+
+    <title>
+        
+            Elastic Cloud on Kubernetes :: Magsther&#39;s Blog  — A blog about DevOps &amp; SRE
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Elastic Cloud on Kubernetes">
+<meta itemprop="description" content="What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms."><meta itemprop="datePublished" content="2022-07-14T15:47:55+02:00" />
+<meta itemprop="dateModified" content="2022-07-14T15:47:55+02:00" />
+<meta itemprop="wordCount" content="633"><meta itemprop="image" content="https://magsther.github.io"/>
+<meta itemprop="keywords" content="kubernetes,elastic,terraform," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://magsther.github.io"/>
+
+<meta name="twitter:title" content="Elastic Cloud on Kubernetes"/>
+<meta name="twitter:description" content="What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms."/>
+
+
+
+    <meta property="og:title" content="Elastic Cloud on Kubernetes" />
+<meta property="og:description" content="What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://magsther.github.io/posts/elastic/" /><meta property="og:image" content="https://magsther.github.io"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-14T15:47:55+02:00" />
+<meta property="article:modified_time" content="2022-07-14T15:47:55+02:00" /><meta property="og:site_name" content="Magsther&#39;s Blog" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-07-14 15:47:55 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">magsther - home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://magsther.github.io/posts/elastic/">Elastic Cloud on Kubernetes</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h1 id="what-is-elastic-cloud">What is Elastic Cloud?</h1>
+<p><em>Elastic Cloud is the best way to consume all of Elastic&rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.</em></p>
+<h1 id="what-is-kubernetes">What is Kubernetes?</h1>
+<p><em>Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms.</em></p>
+<h1 id="elastic-cloud-on-kubernetes">Elastic Cloud on Kubernetes</h1>
+<p>We will use our <a href="https://magsther.github.io/posts/kind/">Kind</a> that we deployed earlier.</p>
+<p>Elastic has created a good <a href="https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html">quickstart</a> on how to <strong>manually</strong> deploy <strong>Elastic Cloud on Kubernetes</strong> (short ECK).</p>
+<p>We are all for <strong>automation</strong> ;) so we will do it with <a href="https://www.terraform.io/">Terraform</a></p>
+<p>In a previous <a href="https://magsther.github.io/posts/kubeprometheus/">post</a>, we deployed <a href="https://github.com/prometheus-operator/kube-prometheus">Kube-Prometheus</a> by creating a Terraform module.</p>
+<p>Let&rsquo;s create another module for <strong>Elastic Cloud</strong>.</p>
+<h3 id="elastic-cloud---provider">Elastic Cloud - Provider</h3>
+<p>As always, when working with <strong>Terraform providers</strong>, we will first take a look at the <a href="https://registry.terraform.io/providers/elastic/ec/latest">Terraform Registry</a>.</p>
+<h3 id="authentication">Authentication</h3>
+<p>We need to tell Terraform how to authenticate with Elastic.</p>
+<p>The <a href="https://registry.terraform.io/providers/elastic/ec/latest/docs">documentation</a> mentions that the provider <em>offers two methods of authentication against the remote API: apikey or a combination of username and password.</em></p>
+<p>Using an <strong>API key</strong> is recommended, so that&rsquo;s what we will use here.</p>
+<p><em>After you&rsquo;ve generated your API Key, you can make it available to the Terraform provider by exporting it as the environment variable EC_API_KEY (recommended)</em></p>
+<p><code>export TF_VAR_ec_api_key=&quot;&lt;apikey value&gt;&quot;</code></p>
+<h3 id="elastic-module">Elastic Module</h3>
+<p>Create a new folder in the <strong>modules</strong> folder.
+<code>mkdir modules/elastic-cloud</code></p>
+<p>First we will add the Elastic Cloud provider to our <code>providers.tf</code> file</p>
+<pre tabindex="0"><code>terraform {
+  required_providers {
+    ec = {
+      source = &#34;elastic/ec&#34;
+      version = &#34;0.4.1&#34;
+    }
+  }
+}
+</code></pre><h3 id="adding-elastic-resources">Adding Elastic resources</h3>
+<p>Create a <code>main.tf</code> file.
+In this file, we will create the <strong>Elastic resources</strong> that we want to use.</p>
+<p>You can find some examples <a href="https://registry.terraform.io/providers/elastic/ec/latest/docs/resources/ec_deployment">here</a></p>
+<p>In our case, we will use <strong>elasticsearch</strong> and <strong>kibana</strong>.
+This deployment will be created in <strong>Azure</strong>.</p>
+<p>The <code>ec_deployment</code> creates  <strong>elasticsearch</strong> and <strong>kibana</strong>.</p>
+<pre tabindex="0"><code>resource &#34;ec_deployment&#34; &#34;elastic_deployment&#34; {
+  name                   = var.ec_instance_name
+  region                 = var.region
+  deployment_template_id = var.deployment_template_id
+  version                = var.es_version
+
+  elasticsearch {
+    autoscale = var.autoscale
+  }
+
+  kibana {}
+}
+</code></pre><p>As you can see from the snippet above, we make use of <strong>input variables</strong>, so that we can customize behavior.</p>
+<p>The <code>deployment_template_id</code> and the <code>region</code> can be found <a href="https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html">here</a></p>
+<p><code>Autocaling</code> is set to false by default, but can be enabled by setting the value in <code>variables.tf</code> to <code>true</code>.</p>
+<h3 id="adding-variables">Adding variables</h3>
+<p>We will define the values in the <code>variables.tf</code> file.
+Using variables allows us to write configuration that is flexible and easier to re-use.</p>
+<pre tabindex="0"><code>variable &#34;ec_instance_name&#34; {
+  type        = string
+  default     = &#34;my-test-instance&#34;
+  description = &#34;Name of Elastic deployment&#34;
+}
+
+variable &#34;region&#34; {
+  type        = string
+  default     = &#34;azure-westeurope&#34;
+  description = &#34;Region of Elastic deployment&#34;
+}
+
+variable &#34;es_version&#34; {
+  type        = string
+  default     = &#34;8.2.3&#34;
+  description = &#34;Version of Elastic deployment&#34;
+}
+
+variable &#34;deployment_template_id&#34; {
+  type        = string
+  default     = &#34;azure-memory-optimized&#34;
+  description = &#34;Azure SKU of Elastic deployment&#34;
+}
+
+variable &#34;autoscale&#34; {
+  default     = false
+  type        = bool
+  description = &#34;Autocale enabled of Elastic deployment&#34;
+}
+</code></pre><p>We also add an <code>output.tf</code> file. This will make it easier for us to connect to the cluster once it is deployed.</p>
+<pre tabindex="0"><code>output &#34;elasticsearch_endpoint&#34; {
+  value = ec_deployment.elastic_deployment.elasticsearch[0].https_endpoint
+}
+
+output &#34;elasticsearch_username&#34; {
+  value = ec_deployment.elastic_deployment.elasticsearch_username
+}
+
+output &#34;elasticsearch_password&#34; {
+  value     = ec_deployment.elastic_deployment.elasticsearch_password
+  sensitive = true
+}
+</code></pre><p>In the <strong>root module</strong> update the <code>main.tf</code> file with our new module</p>
+<pre tabindex="0"><code>module &#34;elastic&#34; {
+  source     = &#34;./modules/elastic-cloud&#34;
+}
+</code></pre><h3 id="deploy-time">Deploy time</h3>
+<p>Let&rsquo;s see if this works.</p>
+<p>Run <code>terraform init</code> in your terminal.
+This will download our new provider (elastic cloud)</p>
+<p>Run <code>terraform plan</code> to see what will be deployed.</p>
+<p>Run <code>terraform apply</code> to apply the plan. Respond to the confirmation prompt with a yes.</p>
+<p>After a little while, the Elastic cluster is deployed and can be found in the <strong>Elastic Cloud portal</strong>.</p>
+<h3 id="additional-resources">Additional resources</h3>
+<p><a href="https://registry.terraform.io/providers/elastic/ec/latest/docs">https://registry.terraform.io/providers/elastic/ec/latest/docs</a></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://magsther.github.io/tags/kubernetes/">kubernetes</a></span>
+        <span class="tag"><a href="https://magsther.github.io/tags/elastic/">elastic</a></span>
+        <span class="tag"><a href="https://magsther.github.io/tags/terraform/">terraform</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        633 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2022-07-14 15:47
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Elastic%20Cloud%20on%20Kubernetes&amp;body=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f&amp;title=Elastic%20Cloud%20on%20Kubernetes&amp;summary=Elastic%20Cloud%20on%20Kubernetes&amp;source=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f&amp;resubmit=true&amp;title=Elastic%20Cloud%20on%20Kubernetes" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmagsther.github.io%2fposts%2felastic%2f&amp;t=Elastic%20Cloud%20on%20Kubernetes" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://magsther.github.io/posts/kubeprometheus/">
+                    <span class="button__text">Kube-Prometheus (with Terraform and Helm)</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

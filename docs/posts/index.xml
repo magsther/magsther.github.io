@@ -6,8 +6,129 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 11 Jul 2022 20:37:53 +0200</lastBuildDate>
+        <lastBuildDate>Thu, 14 Jul 2022 15:47:55 +0200</lastBuildDate>
         <atom:link href="https://magsther.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Elastic Cloud on Kubernetes</title>
+            <link>https://magsther.github.io/posts/elastic/</link>
+            <pubDate>Thu, 14 Jul 2022 15:47:55 +0200</pubDate>
+            
+            <guid>https://magsther.github.io/posts/elastic/</guid>
+            <description>What is Elastic Cloud? Elastic Cloud is the best way to consume all of Elastic&amp;rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.
+What is Kubernetes? Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms.</description>
+            <content type="html"><![CDATA[<h1 id="what-is-elastic-cloud">What is Elastic Cloud?</h1>
+<p><em>Elastic Cloud is the best way to consume all of Elastic&rsquo;s products across any cloud. Easily deploy in your favorite public cloud, or in multiple clouds, and extend the value of Elastic with cloud-native features.</em></p>
+<h1 id="what-is-kubernetes">What is Kubernetes?</h1>
+<p><em>Kubernetes, often abbreviated as “K8s”, orchestrates containerized applications to run on a cluster of hosts. The K8s system automates the deployment and management of cloud native applications using on-premises infrastructure or public cloud platforms.</em></p>
+<h1 id="elastic-cloud-on-kubernetes">Elastic Cloud on Kubernetes</h1>
+<p>We will use our <a href="https://magsther.github.io/posts/kind/">Kind</a> that we deployed earlier.</p>
+<p>Elastic has created a good <a href="https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html">quickstart</a> on how to <strong>manually</strong> deploy <strong>Elastic Cloud on Kubernetes</strong> (short ECK).</p>
+<p>We are all for <strong>automation</strong> ;) so we will do it with <a href="https://www.terraform.io/">Terraform</a></p>
+<p>In a previous <a href="https://magsther.github.io/posts/kubeprometheus/">post</a>, we deployed <a href="https://github.com/prometheus-operator/kube-prometheus">Kube-Prometheus</a> by creating a Terraform module.</p>
+<p>Let&rsquo;s create another module for <strong>Elastic Cloud</strong>.</p>
+<h3 id="elastic-cloud---provider">Elastic Cloud - Provider</h3>
+<p>As always, when working with <strong>Terraform providers</strong>, we will first take a look at the <a href="https://registry.terraform.io/providers/elastic/ec/latest">Terraform Registry</a>.</p>
+<h3 id="authentication">Authentication</h3>
+<p>We need to tell Terraform how to authenticate with Elastic.</p>
+<p>The <a href="https://registry.terraform.io/providers/elastic/ec/latest/docs">documentation</a> mentions that the provider <em>offers two methods of authentication against the remote API: apikey or a combination of username and password.</em></p>
+<p>Using an <strong>API key</strong> is recommended, so that&rsquo;s what we will use here.</p>
+<p><em>After you&rsquo;ve generated your API Key, you can make it available to the Terraform provider by exporting it as the environment variable EC_API_KEY (recommended)</em></p>
+<p><code>export TF_VAR_ec_api_key=&quot;&lt;apikey value&gt;&quot;</code></p>
+<h3 id="elastic-module">Elastic Module</h3>
+<p>Create a new folder in the <strong>modules</strong> folder.
+<code>mkdir modules/elastic-cloud</code></p>
+<p>First we will add the Elastic Cloud provider to our <code>providers.tf</code> file</p>
+<pre tabindex="0"><code>terraform {
+  required_providers {
+    ec = {
+      source = &#34;elastic/ec&#34;
+      version = &#34;0.4.1&#34;
+    }
+  }
+}
+</code></pre><h3 id="adding-elastic-resources">Adding Elastic resources</h3>
+<p>Create a <code>main.tf</code> file.
+In this file, we will create the <strong>Elastic resources</strong> that we want to use.</p>
+<p>You can find some examples <a href="https://registry.terraform.io/providers/elastic/ec/latest/docs/resources/ec_deployment">here</a></p>
+<p>In our case, we will use <strong>elasticsearch</strong> and <strong>kibana</strong>.
+This deployment will be created in <strong>Azure</strong>.</p>
+<p>The <code>ec_deployment</code> creates  <strong>elasticsearch</strong> and <strong>kibana</strong>.</p>
+<pre tabindex="0"><code>resource &#34;ec_deployment&#34; &#34;elastic_deployment&#34; {
+  name                   = var.ec_instance_name
+  region                 = var.region
+  deployment_template_id = var.deployment_template_id
+  version                = var.es_version
+
+  elasticsearch {
+    autoscale = var.autoscale
+  }
+
+  kibana {}
+}
+</code></pre><p>As you can see from the snippet above, we make use of <strong>input variables</strong>, so that we can customize behavior.</p>
+<p>The <code>deployment_template_id</code> and the <code>region</code> can be found <a href="https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html">here</a></p>
+<p><code>Autocaling</code> is set to false by default, but can be enabled by setting the value in <code>variables.tf</code> to <code>true</code>.</p>
+<h3 id="adding-variables">Adding variables</h3>
+<p>We will define the values in the <code>variables.tf</code> file.
+Using variables allows us to write configuration that is flexible and easier to re-use.</p>
+<pre tabindex="0"><code>variable &#34;ec_instance_name&#34; {
+  type        = string
+  default     = &#34;my-test-instance&#34;
+  description = &#34;Name of Elastic deployment&#34;
+}
+
+variable &#34;region&#34; {
+  type        = string
+  default     = &#34;azure-westeurope&#34;
+  description = &#34;Region of Elastic deployment&#34;
+}
+
+variable &#34;es_version&#34; {
+  type        = string
+  default     = &#34;8.2.3&#34;
+  description = &#34;Version of Elastic deployment&#34;
+}
+
+variable &#34;deployment_template_id&#34; {
+  type        = string
+  default     = &#34;azure-memory-optimized&#34;
+  description = &#34;Azure SKU of Elastic deployment&#34;
+}
+
+variable &#34;autoscale&#34; {
+  default     = false
+  type        = bool
+  description = &#34;Autocale enabled of Elastic deployment&#34;
+}
+</code></pre><p>We also add an <code>output.tf</code> file. This will make it easier for us to connect to the cluster once it is deployed.</p>
+<pre tabindex="0"><code>output &#34;elasticsearch_endpoint&#34; {
+  value = ec_deployment.elastic_deployment.elasticsearch[0].https_endpoint
+}
+
+output &#34;elasticsearch_username&#34; {
+  value = ec_deployment.elastic_deployment.elasticsearch_username
+}
+
+output &#34;elasticsearch_password&#34; {
+  value     = ec_deployment.elastic_deployment.elasticsearch_password
+  sensitive = true
+}
+</code></pre><p>In the <strong>root module</strong> update the <code>main.tf</code> file with our new module</p>
+<pre tabindex="0"><code>module &#34;elastic&#34; {
+  source     = &#34;./modules/elastic-cloud&#34;
+}
+</code></pre><h3 id="deploy-time">Deploy time</h3>
+<p>Let&rsquo;s see if this works.</p>
+<p>Run <code>terraform init</code> in your terminal.
+This will download our new provider (elastic cloud)</p>
+<p>Run <code>terraform plan</code> to see what will be deployed.</p>
+<p>Run <code>terraform apply</code> to apply the plan. Respond to the confirmation prompt with a yes.</p>
+<p>After a little while, the Elastic cluster is deployed and can be found in the <strong>Elastic Cloud portal</strong>.</p>
+<h3 id="additional-resources">Additional resources</h3>
+<p><a href="https://registry.terraform.io/providers/elastic/ec/latest/docs">https://registry.terraform.io/providers/elastic/ec/latest/docs</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>Kube-Prometheus (with Terraform and Helm)</title>
