@@ -85,9 +85,8 @@ In the `main.tf` file, add the following resource.
 ```
 resource "kubernetes_manifest" "elastic_dashboard" {
   manifest = yamldecode(templatefile("${path.module}/templates/elastic-dashboard-configmap.yaml", {
-    name      = "grafana-elastic"
-    namespace = monitoring
-    data      = file("${path.module}/files/grafana-elastic-dashboard.json")
+   name      = "grafana-elastic"
+   data      = file("${path.module}/files/grafana-elastic-dashboard.json")
   }))
 }
 ```
@@ -106,3 +105,5 @@ and check the **elastic** dashbaord is created.
 
 ### Conclusion
 In this blog post, we deployed an elastic `grafana dashboard` to display the metrics from our Elastic instance in dashboard.
+
+> All code for this blog can be found [here[](https://github.com/magsther/code)

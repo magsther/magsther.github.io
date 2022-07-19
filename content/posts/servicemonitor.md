@@ -66,12 +66,14 @@ Here we add a `kubernetes_manifest` resource and name it `elastic_servicemonitor
 We specify where `servicemonitor.yaml` can be found.
 The appName is important and needs to map the `matchLabels` in our yaml file.
 
+```
 resource "kubernetes_manifest" "elastic_servicemonitor" {
   manifest = yamldecode(templatefile("${path.module}/templates/servicemonitor.yaml", {
     name      = var.ec_instance_name
     appName   = local.elastic_cloud.app
   }))
 }
+```
 
 ### Deploying Elasticsearch Exporter using Terraform
 Run `terraform plan`, to verify the changes that Terraform detected.
@@ -89,5 +91,7 @@ Prometheus is now scraping metrics from the elastic-exporter.
 In this blog post, we deployed a `servicemonitor` so that our Prometheus instance can scrape metrics from the elastic-exporter.
 
 In the next post we will create a Grafana Dashboard to display the data.
+
+> All code for this blog can be found [here[](https://github.com/magsther/code)
 
 
