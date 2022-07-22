@@ -84,6 +84,8 @@ If you have a remote Elastic cluster and that requires `basic auth`, then you wi
 
 Add your to the `variables.tf` file like this:
 
+Variable for `helm_chart_repository`:
+
 ```
 variable "helm_chart_repository" {
   type = string
@@ -92,10 +94,12 @@ variable "helm_chart_repository" {
 }
 ```
 
+Variable for `elasticsearch_exporter_chart_version`:
+
 ```
 variable "elasticsearch_exporter_chart_version" {
   type        = string
-  description = "The version of the elasticsearch-exporter chart in the Helm repository."
+  description = "Helm repository version of elasticsearch-exporter"
   default     = "4.13.0"
 }
 ```
@@ -125,6 +129,7 @@ Elasticsearch Exporter is now fetching information from our Elasticsearch cluste
 Let's have a look of what was deployed in the previous step.
 
 Check that the **endpoint** exposes metrics: 
+
 `k port-forward prometheus-elasticsearch-exporter-xxx 9108:9108`
 
 ### Conclusion
