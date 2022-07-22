@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 22 Jul 2022 20:20:24 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 20:28:02 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana dashboards as configmaps</title>
+      <link>https://magsther.github.io/posts/grafana/</link>
+      <pubDate>Fri, 22 Jul 2022 20:28:02 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/posts/grafana/</guid>
+      <description>Create a Grafana Dashboard This is the last part of our mission to monitor an Elastic cluster using Kube-Prometheus.
+If you remember from the previous blog post, we mentioned that we need to take five steps to do this:
+Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter. Add Prometheus as data source to Grafana Add a Grafana Dashboard to visualise the data.</description>
+    </item>
+    
     <item>
       <title>Kubernetes Servicemonitor</title>
       <link>https://magsther.github.io/posts/servicemonitor/</link>

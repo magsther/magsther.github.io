@@ -6,8 +6,90 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Fri, 22 Jul 2022 20:20:24 +0200</lastBuildDate>
+        <lastBuildDate>Fri, 22 Jul 2022 20:28:02 +0200</lastBuildDate>
         <atom:link href="https://magsther.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Grafana dashboards as configmaps</title>
+            <link>https://magsther.github.io/posts/grafana/</link>
+            <pubDate>Fri, 22 Jul 2022 20:28:02 +0200</pubDate>
+            
+            <guid>https://magsther.github.io/posts/grafana/</guid>
+            <description>Create a Grafana Dashboard This is the last part of our mission to monitor an Elastic cluster using Kube-Prometheus.
+If you remember from the previous blog post, we mentioned that we need to take five steps to do this:
+Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter. Add Prometheus as data source to Grafana Add a Grafana Dashboard to visualise the data.</description>
+            <content type="html"><![CDATA[<h3 id="create-a-grafana-dashboard">Create a Grafana Dashboard</h3>
+<p>This is the last part of our mission to monitor an Elastic cluster using Kube-Prometheus.</p>
+<p>If you remember from the previous blog post, we mentioned that we need to take five steps to do this:</p>
+<ol>
+<li>Deploy Elasticsearch Exporter to Kubernetes.</li>
+<li>Verify that the exporter can scrape metrics from our Elastic cluster.</li>
+<li>Make Kube-Prometheus to <strong>scrape the exporter.</strong></li>
+<li>Add Prometheus as <strong>data source</strong> to Grafana</li>
+<li>Add a <strong>Grafana Dashboard</strong> to visualise the data.</li>
+</ol>
+<p>In this blog post we will do step 5.</p>
+<h3 id="prerequisite">Prerequisite</h3>
+<ul>
+<li>Existing Kubernetes cluster</li>
+<li>Kube-Prometheus deployed.</li>
+<li>Servicemonitor for elastic-exporter</li>
+</ul>
+<p>You can find the blog post <a href="https://magsther.github.io/posts/kubeprometheus/">here</a> if you want to see how we did it.</p>
+<h3 id="what-is-grafana">What is Grafana?</h3>
+<p>Grafana is an open source solution for running data analytics, pulling up metrics that make sense of the massive amount of data &amp; to monitor our apps with the help of cool customizable dashboards.</p>
+<h3 id="grafana-dashboards-as-configmaps">Grafana dashboards as configmaps</h3>
+<p>Usuually we add Grafana dashboards using the UI.
+This is however not the preferred method when we want to automatic the infrastructure.</p>
+<p>To manage our Grafana dashboard in our declarative way, these are the steps we will take:</p>
+<ol>
+<li>Create a (Kubernetes) <strong>configmap</strong></li>
+<li>Find and add a <strong>Grafana dashboard</strong> json file.</li>
+<li>Add a <code>kubernetes manifest</code> resource to our Terraform configuration</li>
+</ol>
+<p><strong>Let&rsquo;s start</strong></p>
+<h3 id="configmap">Configmap</h3>
+<p><code>vim elastic-dashboard-configmap.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-elastic
+  namespace: monitoring
+  labels:
+    grafana_dashboard: &#34;true&#34;
+data:
+  elastic.json: |
+    ${indent(4, data)}
+</code></pre><h3 id="find-and-add-a-grafana-dashboard-json-file">Find and add a Grafana dashboard json file.</h3>
+<p>Grafna provides pre-created dashboards on their website for all kind of use-cases.
+We are interested in an <code>Elastic</code> dashboard, so we go to the website and search for that.</p>
+<p>Browse through the <a href="https://grafana.com/grafana/dashboards/?search=elastic">result</a> and pick one that you like.</p>
+<p>Tip: you can look at the number of <code>Downloads</code> to find the most popular ones.</p>
+<p>Save the dashbaord as a json file.</p>
+<p>In my case, I saved in as <code>grafana-elastic-dashboard</code>.</p>
+<p>Note: always read through the json file to understand what it does. You can edit the file as you see fit.</p>
+<h3 id="add-a-kubernetes-manifest-resource-to-terraform">Add a kubernetes manifest resource to Terraform</h3>
+<p>In the <code>main.tf</code> file, add the following resource.</p>
+<pre tabindex="0"><code>resource &#34;kubernetes_manifest&#34; &#34;elastic_dashboard&#34; {
+  manifest = yamldecode(templatefile(&#34;${path.module}/templates/elastic-dashboard-configmap.yaml&#34;, {
+   name      = &#34;grafana-elastic&#34;
+   data      = file(&#34;${path.module}/files/grafana-elastic-dashboard.json&#34;)
+  }))
+}
+</code></pre><p>This will load the <code>configmap</code> that we created earlier and add it to Grafana.</p>
+<h3 id="deploying-using-terraform">Deploying using Terraform</h3>
+<p>Run <code>terraform plan</code>, to verify the changes that Terraform detected.</p>
+<p>Apply the terraform plan with <code>terraform apply</code></p>
+<p>After a little while <strong>grafana dashboard</strong> is deployed to our <strong>Kubernetes</strong> cluster.</p>
+<p>Open the <code>Grafana UI</code> with : <code>kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 --namespace monitoring</code>
+and check the <strong>elastic</strong> dashbaord is created.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>In this blog post, we deployed an elastic <code>grafana dashboard</code> to display the metrics from our Elastic instance in dashboard.</p>
+<blockquote>
+<p>All code for this blog can be found <a href="https://github.com/magsther/code">here</a></p>
+</blockquote>
+]]></content>
+        </item>
         
         <item>
             <title>Kubernetes Servicemonitor</title>
