@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes ServiceMonitor?"
+title: "Kubernetes Servicemonitor"
 date: 2022-07-22T20:20:24+02:00
 draft: false
 toc: false
