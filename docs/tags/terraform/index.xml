@@ -9,7 +9,7 @@
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 22 Jul 2022 20:05:23 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Export Elastic Metrics and Kube-Prometheus</title>
+      <title>How to monitor Elasticsearch with Kube-Prometheus</title>
       <link>https://magsther.github.io/posts/elasticexporter/</link>
       <pubDate>Fri, 22 Jul 2022 20:05:23 +0200</pubDate>
       

@@ -1,5 +1,5 @@
 ---
-title: "Export Elastic Metrics and Kube-Prometheus"
+title: "How to monitor Elasticsearch with Kube-Prometheus"
 date: 2022-07-22T20:05:23+02:00
 draft: false
 toc: false
