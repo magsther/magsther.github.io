@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ServiceMonitor?"
-date: 2022-07-19T11:23:24+02:00
-draft: true
+date: 2022-07-22T20:20:24+02:00
+draft: false
 toc: false
 images:
 tags:
@@ -21,8 +21,8 @@ In the previous post we deployed [Elasticsearch Exporter[(https://github.com/pro
 We defined five steps to take to monitor our Elastic deployment.
 
 There are basically five steps that we need to take:
-1. Deploy Elasticsearch Exporter to Kubernetes.
-2. Verify that the exporter can scrape metrics from our Elastic cluster.
+1. Deploy **Elasticsearch Exporter** to Kubernetes.
+2. Verify that the exporter can **scrape metrics** from our Elastic cluster.
 3. Make Kube-Prometheus to **scrape the exporter.** 
 4. Add Prometheus as **data source** to Grafana
 5. Add a **Grafana Dashboard** to visualise the data.
@@ -92,6 +92,5 @@ In this blog post, we deployed a `servicemonitor` so that our Prometheus instanc
 
 In the next post we will create a Grafana Dashboard to display the data.
 
-> All code for this blog can be found [here[](https://github.com/magsther/code)
-
+> All code for this blog can be found [here](https://github.com/magsther/code)
 

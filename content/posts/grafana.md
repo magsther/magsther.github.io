@@ -106,4 +106,4 @@ and check the **elastic** dashbaord is created.
 ### Conclusion
 In this blog post, we deployed an elastic `grafana dashboard` to display the metrics from our Elastic instance in dashboard.
 
-> All code for this blog can be found [here[](https://github.com/magsther/code)
+> All code for this blog can be found [here](https://github.com/magsther/code)

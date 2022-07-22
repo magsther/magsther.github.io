@@ -6,8 +6,82 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Fri, 22 Jul 2022 20:05:23 +0200</lastBuildDate>
+        <lastBuildDate>Fri, 22 Jul 2022 20:20:24 +0200</lastBuildDate>
         <atom:link href="https://magsther.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Kubernetes ServiceMonitor?</title>
+            <link>https://magsther.github.io/posts/servicemonitor/</link>
+            <pubDate>Fri, 22 Jul 2022 20:20:24 +0200</pubDate>
+            
+            <guid>https://magsther.github.io/posts/servicemonitor/</guid>
+            <description>Kubernetes ServiceMonitor ServiceMonitor describes the set of targets to be monitored by Prometheus.
+In the previous post we deployed [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.
+We defined five steps to take to monitor our Elastic deployment.
+There are basically five steps that we need to take:
+Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter.</description>
+            <content type="html"><![CDATA[<h3 id="kubernetes-servicemonitor">Kubernetes ServiceMonitor</h3>
+<p><code>ServiceMonitor</code> describes the set of targets to be monitored by Prometheus.</p>
+<p>In the previous post we deployed [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.</p>
+<p>We defined five steps to take to monitor our Elastic deployment.</p>
+<p>There are basically five steps that we need to take:</p>
+<ol>
+<li>Deploy <strong>Elasticsearch Exporter</strong> to Kubernetes.</li>
+<li>Verify that the exporter can <strong>scrape metrics</strong> from our Elastic cluster.</li>
+<li>Make Kube-Prometheus to <strong>scrape the exporter.</strong></li>
+<li>Add Prometheus as <strong>data source</strong> to Grafana</li>
+<li>Add a <strong>Grafana Dashboard</strong> to visualise the data.</li>
+</ol>
+<p>In this blog post we will continue with steps 3 and 4.</p>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>Have an existing Kubernetes cluster with Kube-Prometheus deployed.</p>
+<p>We did all that (using Terraform).
+You can find the blog post <a href="https://magsther.github.io/posts/kubeprometheus/">here</a></p>
+<h3 id="create-the-servicemonitor">Create the servicemonitor</h3>
+<p>We will create a serviceresource in Kubernetes to allow our existing <code>Kube-Prometheus</code> to scrape the metrics from the elastic-exporter.</p>
+<p>Create a new file called <code>servicemonitor.yaml</code> with the following content.</p>
+<pre tabindex="0"><code>apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: elastic-exporter
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+  - interval: 5s
+    port: http
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      app: prometheus-elasticsearch-exporter
+</code></pre><p>Add the following to the <code>main.tf</code> file in the <code>elastic-cloud</code> module</p>
+<p>Here we add a <code>kubernetes_manifest</code> resource and name it <code>elastic_servicemonitor</code>.
+We specify where <code>servicemonitor.yaml</code> can be found.
+The appName is important and needs to map the <code>matchLabels</code> in our yaml file.</p>
+<pre tabindex="0"><code>resource &#34;kubernetes_manifest&#34; &#34;elastic_servicemonitor&#34; {
+  manifest = yamldecode(templatefile(&#34;${path.module}/templates/servicemonitor.yaml&#34;, {
+    name      = var.ec_instance_name
+    appName   = local.elastic_cloud.app
+  }))
+}
+</code></pre><h3 id="deploying-elasticsearch-exporter-using-terraform">Deploying Elasticsearch Exporter using Terraform</h3>
+<p>Run <code>terraform plan</code>, to verify the changes that Terraform detected.</p>
+<p>Apply the terraform plan with <code>terraform apply</code></p>
+<p>After a little while <strong>servicemonitor</strong> is deployed to our <strong>Kubernetes</strong> cluster.</p>
+<p>Open the <code>prometheus UI</code> with : <code>kubectl port-forward svc/kube-prometheus-stackr-prometheus 9090:9090 --namespace monitoring</code>
+and check the <strong>target</strong> and verify that its there.</p>
+<p>Prometheus is now scraping metrics from the elastic-exporter.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>In this blog post, we deployed a <code>servicemonitor</code> so that our Prometheus instance can scrape metrics from the elastic-exporter.</p>
+<p>In the next post we will create a Grafana Dashboard to display the data.</p>
+<blockquote>
+<p>All code for this blog can be found <a href="https://github.com/magsther/code">here</a></p>
+</blockquote>
+]]></content>
+        </item>
         
         <item>
             <title>How to monitor Elasticsearch with Kube-Prometheus</title>

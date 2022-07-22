@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 22 Jul 2022 20:05:23 +0200</lastBuildDate><atom:link href="https://magsther.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 20:20:24 +0200</lastBuildDate><atom:link href="https://magsther.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes ServiceMonitor?</title>
+      <link>https://magsther.github.io/posts/servicemonitor/</link>
+      <pubDate>Fri, 22 Jul 2022 20:20:24 +0200</pubDate>
+      
+      <guid>https://magsther.github.io/posts/servicemonitor/</guid>
+      <description>Kubernetes ServiceMonitor ServiceMonitor describes the set of targets to be monitored by Prometheus.
+In the previous post we deployed [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.
+We defined five steps to take to monitor our Elastic deployment.
+There are basically five steps that we need to take:
+Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter.</description>
+    </item>
+    
     <item>
       <title>How to monitor Elasticsearch with Kube-Prometheus</title>
       <link>https://magsther.github.io/posts/elasticexporter/</link>
