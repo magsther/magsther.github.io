@@ -47,7 +47,7 @@ To monitor our Elastic deployment, we can use [Elasticsearch Exporter[(https://g
 There are basically five steps that we need to take:
 Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter. Add Prometheus as data source to Grafana Add a Grafana Dashboard to visualise the data."><meta itemprop="datePublished" content="2022-07-22T20:05:23+02:00" />
 <meta itemprop="dateModified" content="2022-07-22T20:05:23+02:00" />
-<meta itemprop="wordCount" content="614"><meta itemprop="image" content="https://magsther.github.io"/>
+<meta itemprop="wordCount" content="595"><meta itemprop="image" content="https://magsther.github.io"/>
 <meta itemprop="keywords" content="elastic,prometheus,kubernetes,helm,terraform," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://magsther.github.io"/>
@@ -163,13 +163,13 @@ Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape
 <p>To monitor our Elastic deployment, we can use [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)]</p>
 <p>There are basically five steps that we need to take:</p>
 <ol>
-<li>Deploy Elasticsearch Exporter to Kubernetes.</li>
-<li>Verify that the exporter can scrape metrics from our Elastic cluster.</li>
+<li>Deploy <strong>Elasticsearch Exporter</strong> to Kubernetes.</li>
+<li>Verify that the exporter can <strong>scrape metrics</strong> from our Elastic cluster.</li>
 <li>Make Kube-Prometheus to <strong>scrape the exporter.</strong></li>
 <li>Add Prometheus as <strong>data source</strong> to Grafana</li>
 <li>Add a <strong>Grafana Dashboard</strong> to visualise the data.</li>
 </ol>
-<p>In this blog post we will begin with step 1 and 2, and in the next post we will do rest of the steps.</p>
+<p>In this blog post we will begin with step 1 and 2, and in the next posts we will do rest of the steps.</p>
 <h3 id="what-is-elasticsearch-exporter">What is Elasticsearch Exporter?</h3>
 <p>Elasticsearch Exporter is a <strong>Prometheus</strong> exporter for various metrics about Elasticsearch.
 It fetches information from an Elasticsearch cluster on every scrape,</p>
@@ -179,14 +179,11 @@ It&rsquo;s also here we need to add our credentials if <code>basic auth</code> i
 <h3 id="elasticsearch-exporter---helm">Elasticsearch Exporter - Helm</h3>
 <p>We will deploy our exporter using a helm chart that can be found in the <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-elasticsearch-exporter">prometheus-community charts repository</a></p>
 <p>Installing the <code>helm</code> chart manually in the <code>Kubernetes</code> cluster is as simple as running:
-<code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code>
-<code>helm repo update</code>
-<code>helm install [RELEASE_NAME] prometheus-community/prometheus-elasticsearch-exporter</code></p>
+<code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code></p>
+<p><code>helm repo update</code></p>
+<p><code>helm install [RELEASE_NAME] prometheus-community/prometheus-elasticsearch-exporter</code></p>
 <h3 id="elasticsearch-exporter-and-terraform">Elasticsearch Exporter and Terraform</h3>
 <p>To deploy the <a href="https://github.com/prometheus-community/elasticsearch_exporter">exporter</a> using <code>Terraform</code>, we will create a new file in our <code>elastic-cloud</code> module.</p>
-<blockquote>
-<p>All code for this blog can be found [here<a href="https://github.com/magsther/code"></a></p>
-</blockquote>
 <p><code>vim es-exporter.tf</code></p>
 <p>First we add a new resource (<code>helm_release</code>) and name it <code>es_exporter</code>.</p>
 <p>In our resource we add:</p>
@@ -210,20 +207,18 @@ It&rsquo;s also here we need to add our credentials if <code>basic auth</code> i
     name  = &#34;es.uri&#34;
     value = replace(ec_deployment.elastic_deployment.elasticsearch.0.https_endpoint, &#34;https://&#34;, &#34;https://${ec_deployment.elastic_deployment.elasticsearch_username}:${ec_deployment.elastic_deployment.elasticsearch_password}@&#34;)
   }
-</code></pre><p>As you can see from the snippet above, we also use variables in our resource.
-These variables needs to be added to the <code>variables.tf</code> file like this:</p>
+</code></pre><p>Add your to the <code>variables.tf</code> file like this:</p>
 <pre tabindex="0"><code>variable &#34;helm_chart_repository&#34; {
   type = string
   default = &#34;https://prometheus-community.github.io/helm-charts&#34;
   description = &#34;Helm Chart repository&#34;
 }
-
-variable &#34;elasticsearch_exporter_chart_version&#34; {
+</code></pre><pre tabindex="0"><code>variable &#34;elasticsearch_exporter_chart_version&#34; {
   type        = string
   description = &#34;The version of the elasticsearch-exporter chart in the Helm repository.&#34;
   default     = &#34;4.13.0&#34;
 }
-</code></pre><p>Since we are using the [Helm])https://registry.terraform.io/providers/hashicorp/helm/latest) provider from the Terraform Registry, we will need to add this to our <code>providers.tf</code> file like this:</p>
+</code></pre><p>Since we are using the <a href="https://registry.terraform.io/providers/hashicorp/helm/latest">Helm</a> provider from the Terraform Registry, we will need to add this to our <code>providers.tf</code> file like this:</p>
 <pre tabindex="0"><code>    helm = {
       source  = &#34;hashicorp/helm&#34;
       ersion  = &#34;~&gt; 2.6.0&#34;
@@ -236,10 +231,14 @@ variable &#34;elasticsearch_exporter_chart_version&#34; {
 <h3 id="interacting-with-the-elasticsearch-exporter">Interacting with the Elasticsearch Exporter</h3>
 <p>Elasticsearch Exporter is now fetching information from our Elasticsearch cluster.</p>
 <p>Let&rsquo;s have a look of what was deployed in the previous step.</p>
-<p>Check that the <strong>endpoint</strong> exposes metrics: <code>k port-forward prometheus-elasticsearch-exporter-xxx 9108:9108</code></p>
+<p>Check that the <strong>endpoint</strong> exposes metrics:
+<code>k port-forward prometheus-elasticsearch-exporter-xxx 9108:9108</code></p>
 <h3 id="conclusion">Conclusion</h3>
 <p>In this blog post, we deployed an <code>Elastic-exporter</code> (which scrapes metrics from our Elastic clsuter) using the <code>Helm</code> resource from <code>Terraform</code> to our <code>Kubernetes</code> cluster.</p>
 <p>In the next post we will add a <code>servicemonitor</code> to our exporter to have so that our <code>Kube-Prometheus</code> can <strong>scrape the metrics</strong> and display it in a Grafana Dashboard.</p>
+<blockquote>
+<p>All code for this blog can be found <a href="https://github.com/magsther/code">here</a></p>
+</blockquote>
 
       </div>
     </article>
@@ -269,7 +268,7 @@ variable &#34;elasticsearch_exporter_chart_version&#34; {
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        614 Words
+        595 Words
       </p>
 
       <p>
