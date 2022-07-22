@@ -16,7 +16,7 @@ tags:
 ### Kubernetes ServiceMonitor
 `ServiceMonitor` describes the set of targets to be monitored by Prometheus.  
 
-In the previous post we deployed [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.
+In the previous post we deployed [Elasticsearch Exporter)[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.
 
 We defined five steps to take to monitor our Elastic deployment.
 
@@ -62,10 +62,6 @@ spec:
 
 Add the following to the `main.tf` file in the `elastic-cloud` module
 
-Here we add a `kubernetes_manifest` resource and name it `elastic_servicemonitor`.
-We specify where `servicemonitor.yaml` can be found.
-The appName is important and needs to map the `matchLabels` in our yaml file.
-
 ```
 resource "kubernetes_manifest" "elastic_servicemonitor" {
   manifest = yamldecode(templatefile("${path.module}/templates/servicemonitor.yaml", {
@@ -75,6 +71,13 @@ resource "kubernetes_manifest" "elastic_servicemonitor" {
 }
 ```
 
+Here we add a `kubernetes_manifest` resource and name it `elastic_servicemonitor`.
+
+We specify where `servicemonitor.yaml` can be found.
+
+The `appName` is important and needs to map the `matchLabels` in our yaml file.
+
+
 ### Deploying Elasticsearch Exporter using Terraform
 Run `terraform plan`, to verify the changes that Terraform detected.
 
@@ -82,7 +85,10 @@ Apply the terraform plan with `terraform apply`
 
 After a little while **servicemonitor** is deployed to our **Kubernetes** cluster.
 
-Open the `prometheus UI` with : `kubectl port-forward svc/kube-prometheus-stackr-prometheus 9090:9090 --namespace monitoring`
+Open the `prometheus UI` with: 
+
+`kubectl port-forward svc/kube-prometheus-stackr-prometheus 9090:9090 --namespace monitoring`
+
 and check the **target** and verify that its there.
 
 Prometheus is now scraping metrics from the elastic-exporter.
