@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>helm on Magsther&#39;s Blog</title>
-    <link>https://magsther.github.io/tags/helm/</link>
-    <description>Recent content in helm on Magsther&#39;s Blog</description>
+    <title>prometheus on Magsther&#39;s Blog</title>
+    <link>https://magsther.github.io/tags/prometheus/</link>
+    <description>Recent content in prometheus on Magsther&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 22 Jul 2022 20:05:23 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 20:05:23 +0200</lastBuildDate><atom:link href="https://magsther.github.io/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Export Elastic Metrics and Kube-Prometheus</title>
       <link>https://magsther.github.io/posts/elasticexporter/</link>
@@ -18,19 +18,6 @@
 To monitor our Elastic deployment, we can use [Elasticsearch Exporter[(https://github.com/prometheus-community/elasticsearch_exporter)]
 There are basically five steps that we need to take:
 Deploy Elasticsearch Exporter to Kubernetes. Verify that the exporter can scrape metrics from our Elastic cluster. Make Kube-Prometheus to scrape the exporter. Add Prometheus as data source to Grafana Add a Grafana Dashboard to visualise the data.</description>
-    </item>
-    
-    <item>
-      <title>Kube-Prometheus (with Terraform and Helm)</title>
-      <link>https://magsther.github.io/posts/kubeprometheus/</link>
-      <pubDate>Mon, 11 Jul 2022 20:37:53 +0200</pubDate>
-      
-      <guid>https://magsther.github.io/posts/kubeprometheus/</guid>
-      <description>Kube-Prometheus using Terraform (and Helm) In the previous post we deployed our Kind cluster using Terraform.
-Let&amp;rsquo;s continue and add the kube-prometheus stack to our Kubernetes cluster.
-What is Kube-Prometheus? Kube-Prometheus is magic ;)
-You deploy it to your Kubernetes cluster and it will automatically collect metrics from all Kubernetes components. This means, prometheus , some default set of rules and pre-configured Grafana dashboards!!!
-The only prerequisites we need is a Kubernetes cluster, which we deployed in our previosu post.</description>
     </item>
     
   </channel>
