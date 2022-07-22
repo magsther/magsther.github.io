@@ -18,8 +18,8 @@ This is the last part of our mission to monitor an Elastic cluster using Kube-Pr
 
 If you remember from the previous blog post, we mentioned that we need to take five steps to do this:
 
-1. Deploy Elasticsearch Exporter to Kubernetes.
-2. Verify that the exporter can scrape metrics from our Elastic cluster.
+1. Deploy **Elasticsearch Exporter** to Kubernetes.
+2. Verify that the exporter can **scrape metrics** from our Elastic cluster.
 3. Make Kube-Prometheus to **scrape the exporter.** 
 4. Add Prometheus as **data source** to Grafana
 5. Add a **Grafana Dashboard** to visualise the data.
