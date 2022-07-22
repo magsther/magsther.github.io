@@ -1,7 +1,7 @@
 ---
-title: "Grafana dashboards as configMaps"
-date: 2022-07-19T11:53:02+02:00
-draft: true
+title: "Grafana dashboards as configmaps"
+date: 2022-07-22T20:28:02+02:00
+draft: false
 toc: false
 images:
 tags:
@@ -42,8 +42,8 @@ This is however not the preferred method when we want to automatic the infrastru
 
 To manage our Grafana dashboard in our declarative way, these are the steps we will take:
 
-1. Create a (Kubernetes) configmap
-2. Find and add a Grafana dashboard json file.
+1. Create a (Kubernetes) **configmap**
+2. Find and add a **Grafana dashboard** json file.
 3. Add a `kubernetes manifest` resource to our Terraform configuration
 
 **Let's start**

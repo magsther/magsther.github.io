@@ -16,7 +16,7 @@ tags:
 ### Kubernetes ServiceMonitor
 `ServiceMonitor` describes the set of targets to be monitored by Prometheus.  
 
-In the previous post we deployed [Elasticsearch Exporter)[(https://github.com/prometheus-community/elasticsearch_exporter)] to scrape metrics from our Elastic cluster.
+In the previous post we deployed [Elasticsearch Exporter](https://github.com/prometheus-community/elasticsearch_exporter) to scrape metrics from our Elastic cluster.
 
 We defined five steps to take to monitor our Elastic deployment.
 
