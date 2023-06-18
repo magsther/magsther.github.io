@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>O11y Cloud.com</title>
-    <link>https://magsther.github.io/</link>
-    <description>Recent content on O11y Cloud.com</description>
+    <title>Posts on O11y Cloud.com</title>
+    <link>https://magsther.github.io/posts/</link>
+    <description>Recent content in Posts on O11y Cloud.com</description>
     <image>
       <title>O11y Cloud.com</title>
       <url>https://magsther.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://magsther.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 18 Jun 2023 12:00:17 +0200</lastBuildDate><atom:link href="https://magsther.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jun 2023 12:00:17 +0200</lastBuildDate><atom:link href="https://magsther.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitHub Pages &#43; Hugo</title>
       <link>https://magsther.github.io/posts/gh_hugo/</link>
