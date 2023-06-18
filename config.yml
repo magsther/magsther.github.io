@@ -9,7 +9,7 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+#googleAnalytics: UA-123-45
 
 minify:
   disableXML: true
@@ -17,9 +17,9 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
+  title: O11y Cloud.com
+  description: "Welcome to O11yCloud.com"
+  keywords: [Blog, Portfolio, Observability]
   author: Me
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -75,15 +75,15 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Content: Welcome to my O11yCloud.com
 
   socialIcons:
+    - name: medium
+      url: "https://medium.com/@magstherdev"
     - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
+      url: "https://twitter.com/magsther"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/magsther/magsther.github.io"
 
   analytics:
     google:
@@ -115,17 +115,17 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
+    #- identifier: categories
+    #  name: categories
+    #  url: /categories/
+    #  weight: 10
+    #- identifier: tags
+    #  name: tags
+    #  url: /tags/
+    #  weight: 20
     - identifier: example
-      name: example.org
-      url: https://example.org
+      name: Me on Medium
+      url: https://medium.com/@magstherdev
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
