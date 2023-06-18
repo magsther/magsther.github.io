@@ -75,7 +75,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Hi there \U0001F44B"
-    Content: Welcome to my O11yCloud.com
+    Content: Welcome to O11y Cloud.com
 
   socialIcons:
     - name: medium
